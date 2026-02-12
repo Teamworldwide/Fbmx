@@ -44,6 +44,22 @@
             50% { opacity: 1; }
             100% { opacity: 0.4; }
         }
+        /* Error Overlay for Debugging */
+        #error-overlay {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
     </style>
 
     <script type="importmap">
@@ -61,11 +77,28 @@
 </head>
 <body>
     <div id="root"></div>
+    <div id="error-overlay"></div>
+
+    <script>
+        // Global error catcher to help identify why the screen is blank
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            const overlay = document.getElementById('error-overlay');
+            overlay.style.display = 'block';
+            overlay.innerHTML = `<strong>Runtime Error:</strong> ${msg}<br><small>at ${url}:${lineNo}</small>`;
+            return false;
+        };
+    </script>
 
     <!-- 
-      We use type="text/babel" and data-type="module" 
-      to tell Babel to transpile this as a module in the browser.
+      We point directly to index.tsx. 
+      The 'data-presets' ensures Babel knows how to handle Typescript and React syntax.
+      The 'data-type="module"' tells Babel to treat this as an ES module.
     -->
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+    <script 
+        type="text/babel" 
+        data-type="module" 
+        data-presets="react,typescript" 
+        src="./index.tsx"
+    ></script>
 </body>
 </html>

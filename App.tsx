@@ -4,16 +4,16 @@ import {
   CONTRACT_ADDRESS, 
   CONTRACT_ABI, 
   RPC_URL 
-} from './constants';
+} from './constants.ts';
 import { 
   formatEtherVal, 
   shortenAddress, 
   calculateTimeRemaining, 
   formatTime 
-} from './utils/format';
-import { AppState, UserWallet, UserAffiliate, UserPassive, UserBinary, ContractStats } from './types';
-import StatCard from './components/StatCard';
-import ActionButton from './components/ActionButton';
+} from './utils/format.ts';
+import { AppState, UserWallet, UserAffiliate, UserPassive, UserBinary, ContractStats } from './types.ts';
+import StatCard from './components/StatCard.tsx';
+import ActionButton from './components/ActionButton.tsx';
 
 const WITHDRAW_TIERS = [15, 50, 100, 500, 1000];
 
