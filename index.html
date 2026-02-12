@@ -14,30 +14,45 @@
             font-family: 'Inter', sans-serif;
             background-color: #0f172a;
             color: #f8fafc;
+            margin: 0;
+            padding: 0;
         }
-        .bg-card { background-color: #1e293b; }
-        .text-accent { color: #facc15; }
-        .bg-accent { background-color: #facc15; }
-        .border-accent { border-color: #facc15; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        #root:empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #0f172a;
+        }
+        #root:empty::after {
+            content: "Initializing FBMX Global...";
+            color: #facc15;
+            font-weight: bold;
+            font-family: sans-serif;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react": "https://esm.sh/react@19.0.0",
+    "ethers": "https://esm.sh/ethers@6.13.2",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "ethers": "https://esm.sh/ethers@^6.16.0"
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
+    <!-- Use type="module" and relative path for index.tsx -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
